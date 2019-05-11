@@ -1,1 +1,2 @@
-from .vahti import Vahti  # noqa: F401
+from vahti.vahti import Vahti
+from vahti.parser import Parser

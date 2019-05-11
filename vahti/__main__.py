@@ -1,4 +1,4 @@
-from .cli import VahtiCLI
+from vahti.cli import VahtiCLI
 
 
 def main():

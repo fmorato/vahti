@@ -1,13 +1,15 @@
 import logging
 from datetime import datetime
 
-from .cliargs import arg
-from .parser import Parser
+from vahti.cliargs import arg
+from vahti.parser import Parser
 
 # TODO: add other parameters
 # TODO: check for and parse all pages
 # TODO: add sorting
 # TODO: limit number of items
+
+# TODO: extend vahti and control own cli
 
 logger = logging.getLogger("vahti.tori")
 

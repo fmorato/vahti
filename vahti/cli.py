@@ -4,22 +4,22 @@ import logging
 
 from vahti import Vahti, parsers
 from vahti.helpers import clear_db
-from vahti.parsers.cliargs import ARG_LIST_PROP
-
-# TODO: make persistance optional
+from vahti.cliargs import ARG_LIST_PROP
 
 logger = logging.getLogger("vahti.cli")
 
 
 class VahtiCLI:
     def __init__(self):
+        self.vahti_parsers = parsers.available_parsers
+
         self.parser = argparse.ArgumentParser(prog="vahti")
         self.parser.add_argument("-a", "--all", action="store_true", help="display all results")
         self.parser.add_argument("--clear", action="store_true", help="clear the database and exit")
         self.parser.add_argument("--no-db", action="store_true", help="don't persist")
         self.subparsers = self.parser.add_subparsers(dest="parser", title="parser")
 
-        for parser, parser_class in parsers.avaliable_parsers.items():
+        for parser, parser_class in self.vahti_parsers.items():
             p = self.subparsers.add_parser(parser, help=parser_class.__doc__)
             for arg in getattr(parser_class, ARG_LIST_PROP, []):
                 p.add_argument(*arg[0], **arg[1])
@@ -27,7 +27,6 @@ class VahtiCLI:
         self.args = None
 
     def run_parser(self, args=None):
-        # logger.debug(vars(self.args))
         if getattr(self.args, "clear", False):
             logger.debug("clearing db")
             clear_db()
@@ -42,7 +41,7 @@ class VahtiCLI:
 
         config = vars(self.args)
         vahti = Vahti(config)
-        vahti.parser = parsers.avaliable_parsers[parser](config=config)
+        vahti.parser = self.vahti_parsers[parser](config=config)
         vahti.queries = getattr(self.args, "query", [])
         vahti.run()
 

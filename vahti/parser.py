@@ -1,7 +1,7 @@
 import logging
 import requests
 from bs4 import BeautifulSoup
-from .cliargs import arg
+from vahti.cliargs import arg
 
 logger = logging.getLogger("vahti.parser")
 

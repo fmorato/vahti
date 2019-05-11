@@ -1,7 +1,6 @@
 import logging
-from bs4 import BeautifulSoup
 
-from .parser import Parser
+from vahti.parser import Parser
 
 logger = logging.getLogger("vahti.posti")
 
