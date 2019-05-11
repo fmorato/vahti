@@ -1,5 +1,6 @@
 *.py[co]
 __pycache__/
+*egg*
 venv
 .DS_Store
 
@@ -7,3 +8,4 @@ venv
 *.bak
 *.dat
 *.dir
+dist

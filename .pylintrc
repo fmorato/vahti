@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+disable=
+    fixme,
+    invalid-name,
+    missing-docstring,
+    logging-fstring-interpolation,
+
+[FORMAT]
+max-line-length=125
