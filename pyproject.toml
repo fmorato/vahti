@@ -48,9 +48,10 @@ vahti = "vahti:cli.main"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-requests = "^2.21"
 beautifulsoup4 = "^4.7"
 rope = "^0.14.0"
+aiohttp = "^3.5"
+lxml = "^4.4"
 
 [tool.poetry.dev-dependencies]
 # pre-commit = "^1.10"
