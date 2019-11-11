@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+from textwrap import shorten
 
 from vahti.cliargs import arg
 from vahti.parser import Parser
@@ -40,8 +41,10 @@ class Tori(Parser):
 
         for item in items:
             item_id = item.get("id").split("_")[1]
+            title_long = item.find("div", class_="li-title").text
             new_item = {
-                "title": item.find("div", class_="li-title").text,
+                "title": shorten(title_long, width=30, placeholder=".."),
+                "title_long": title_long,
                 "date": " ".join(item.find("div", class_="date_image").text.split()),
                 "price": item.find("p", class_="list_price").text,
                 "link": f"https://www.tori.fi/vi/{item_id}.htm",
