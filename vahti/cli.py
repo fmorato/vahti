@@ -40,12 +40,13 @@ class VahtiCLI:
         logger.debug("running %s parser", parser)
 
         config = vars(self.args)
-        vahti = Vahti(config)
-        vahti.parser = self.vahti_parsers[parser](config=config)
-        vahti.queries = getattr(self.args, "query", [])
-        vahti.run()
+        vahti = Vahti(
+            parser=self.vahti_parsers[parser](config=config), config=config, queries=getattr(self.args, "query", [])
+        )
+        return_code = vahti.run()
+        vahti.print_result()
 
-        return 0
+        return return_code
 
     def run(self, args=None):
         args = args or sys.argv[1:]
@@ -62,4 +63,4 @@ class VahtiCLI:
         logging.basicConfig(level=logging.DEBUG, format="[%(asctime)s] %(levelname)s %(name)s %(message)s")
         logging.getLogger("requests").setLevel(logging.WARNING)
 
-        sys.exit(self.run())
+        return self.run()
