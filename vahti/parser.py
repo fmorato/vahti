@@ -14,7 +14,6 @@ except ImportError:
     pass
 
 
-
 @arg.query
 class Parser:
     """Base parser to be extended"""

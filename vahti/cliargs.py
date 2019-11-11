@@ -15,4 +15,4 @@ def arg(*args, **kwargs):
     return decorator
 
 
-arg.query = arg("query", nargs="+", help="Strings to query the server. Each string produces a new query")
+arg.query = arg("-q", "--query", nargs="+", help="Strings to query the server. Each string produces a new query")
