@@ -54,3 +54,26 @@ class Tori(Parser):
             result[item_id] = new_item
 
         return result
+
+    @staticmethod
+    def get_pages_url(soup):
+        return [i.get("url") for i in soup.select(".long_pagination a")]
+
+    @staticmethod
+    def get_pages_count(soup):
+        return len(Tori.get_pages_url(soup))
+
+    async def get_options(self, html_id):
+        html = await super().query("")
+        soup = super().parse(html)
+        group = soup.select(f"{html_id} option")
+        return {i.get("value"): i.text for i in group}
+
+    async def categories(self):
+        return await self.get_options("#catgroup")
+
+    async def subcategories(self):
+        pass
+
+    async def regions(self):
+        return await self.get_options("#searcharea_expanded")
