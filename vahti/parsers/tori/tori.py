@@ -19,6 +19,8 @@ class Tori(Parser):
     """A parser for tori.fi"""
 
     def __init__(self, params=None, config=None):
+        if not params:
+            params = {"st": "s"}
         super().__init__(params, config)
         self.url_template = "https://www.tori.fi/{region}/".format
         self.item_format = "{date:>12} {title:40} {price:>6} {link}".format
