@@ -14,7 +14,7 @@ from vahti.parser import Parser
 logger = logging.getLogger("vahti.tori")
 
 
-@arg("-r", "--region", dest="region", default="koko_suomi", help="filter search by region")
+@arg("-r", "--region", dest="region", default="koko_suomi", help="filter by region")
 class Tori(Parser):
     """A parser for tori.fi"""
 
@@ -22,8 +22,9 @@ class Tori(Parser):
         super().__init__(params, config)
         self.url_template = "https://www.tori.fi/{region}/".format
         self.item_format = "{date:>12} {title:40} {price:>6} {link}".format
-        if not getattr(self.config, "region", None):
-            self.config["region"] = "suomi"
+
+        if "region" not in config:
+            config["region"] = "uusimaa"
 
     def set_query(self, query=""):
         self.params["q"] = query
