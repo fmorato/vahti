@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 125
-target-version = ['py36', 'py37']
+target-version = ['py37']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -36,8 +36,8 @@ classifiers=[
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3 :: Only",
     "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
     "Topic :: Software Development :: Libraries :: Python Modules"
@@ -47,9 +47,8 @@ classifiers=[
 vahti = "vahti:cli.main"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 beautifulsoup4 = "^4.7"
-rope = "^0.14.0"
 aiohttp = "^3.5"
 lxml = "^4.4"
 dateparser = "^0.7.2"
@@ -57,8 +56,9 @@ dateparser = "^0.7.2"
 [tool.poetry.dev-dependencies]
 # pre-commit = "^1.10"
 coverage = "^4.5"
-flake8 = "^3.5"
+flake8 = "^3.7"
 pylint = "^2.3"
+black = { version = "*", allows-prereleases = true }
 
 [build-system]
 requires = ["poetry>=0.12"]
